@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Project;
+use App\Models\Project;
 
 class ProjectsController extends Controller
 {

@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\UsersController;
-use app\Http\Controllers\ProjectsController;
-use app\Http\Controllers\TasksController;
-use app\Http\Controllers\UsersProjectsController;
-use app\Http\Controllers\CommunicationsController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\CommunicationsController;
 
 // Users Routes
 

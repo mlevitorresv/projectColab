@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\models\Communication;
+use App\Models\Communication;
 class CommunicationsController extends Controller
 {
     public function index(){
