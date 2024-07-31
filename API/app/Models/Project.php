@@ -29,10 +29,10 @@ class Project extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'users_projects', 'project_id', 'user_id')
         ->withPivot('rol')
-        ->withTimestamp();
+        ->withTimestamps();
     }
 
     public function comunications(){
-        return $this->hasMany(Comunication::class);
+        return $this->hasMany(Communication::class);
     }
 }
