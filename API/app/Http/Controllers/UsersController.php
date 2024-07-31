@@ -15,7 +15,10 @@ class UsersController extends Controller
 
     public function show($id){
         $user = User::find($id);
-        return response() ->json($user);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+        return response()->json($user);
     }
 
     public function store(Request $request){
@@ -30,7 +33,11 @@ class UsersController extends Controller
     }
 
     public function destroy($id){
-        User::destroy($id);
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+        $user->delete();
         return response()->json(null, 204);
     }
 }

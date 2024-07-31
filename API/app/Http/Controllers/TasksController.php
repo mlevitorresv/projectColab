@@ -14,7 +14,10 @@ class TasksController extends Controller
 
     public function show($id){
         $task = Task::find($id);
-        return response() ->json($task);
+        if (!$task) {
+            return response()->json(['error' => 'Task not found'], 404);
+        }
+        return response()->json($task);
     }
 
     public function store(Request $request){
@@ -29,7 +32,11 @@ class TasksController extends Controller
     }
 
     public function destroy($id){
-        Task::destroy($id);
+        $task = Task::find($id);
+        if (!$task) {
+            return response()->json(['error' => 'Task not found'], 404);
+        }
+        $task->delete();
         return response()->json(null, 204);
     }
 }

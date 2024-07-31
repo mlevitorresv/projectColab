@@ -14,6 +14,9 @@ class ProjectsController extends Controller
 
     public function show($id){
         $project = Project::find($id);
+        if (!$project){
+            return response()->json(['error' => 'Project not found'], 404);
+        };
         return response() ->json($project);
     }
 
@@ -29,7 +32,11 @@ class ProjectsController extends Controller
     }
 
     public function destroy($id){
-        Project::destroy($id);
+        $project = Project::find($id);
+        if (!$project){
+            return response()->json(['error' => 'Communication not found'], 404);
+        };
+        $project->delete();
         return response()->json(null, 204);
     }
 }

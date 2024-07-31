@@ -13,7 +13,10 @@ class CommunicationsController extends Controller
 
     public function show($id){
         $communication = Communication::find($id);
-        return response() ->json($communication);
+        if (!$communication){
+            return response()->json(['error' => 'Communication not found'], 404);
+        };
+        return response()->json($communication);
     }
 
     public function store(Request $request){
@@ -22,7 +25,11 @@ class CommunicationsController extends Controller
     }
 
     public function destroy($id){
-        Communication::destroy($id);
+        $communication = Communication::find($id);
+        if (!$communication) {
+            return response()->json(['error' => 'Communication not found'], 404);
+        }
+        $communication->delete();
         return response()->json(null, 204);
     }
 }
