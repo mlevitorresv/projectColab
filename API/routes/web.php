@@ -11,13 +11,13 @@ Route::put('/api/users/{id}', [UsersController::class], 'update');
 Route::delete('/api/users/{id}', [UsersController::class], 'destroy');
 
 
-// Proyects Routes
+// Projects Routes
 
-Route::get('/api/proyects', [ProyectsController::class], 'index');
-Route::post('/api/proyects', [ProyectsController::class], 'store');
-Route::get('/api/proyects/{id}', [ProyectsController::class], 'show');
-Route::put('/api/proyects/{id}', [ProyectsController::class], 'update');
-Route::delete('/api/proyects/{id}', [ProyectsController::class], 'destroy');
+Route::get('/api/projects', [ProjectsController::class], 'index');
+Route::post('/api/projects', [ProjectsController::class], 'store');
+Route::get('/api/projects/{id}', [ProjectsController::class], 'show');
+Route::put('/api/projects/{id}', [ProjectsController::class], 'update');
+Route::delete('/api/projects/{id}', [ProjectsController::class], 'destroy');
 
 // Tasks Routes
 
