@@ -34,7 +34,7 @@ Route::delete('/api/users-projects/{id}', [UsersProyectsController::class], 'des
 
 // Comunications Routes
 
-Route::get('/api/comunications', [ComunicationsController::class], 'index');
-Route::post('/api/comunications', [ComunicationsController::class], 'store');
-Route::get('/api/comunications/{id}', [ComunicationsController::class], 'show');
-Route::delete('/api/comunications/{id}', [ComunicationsController::class], 'destroy');
+Route::get('/api/communications', [CommunicationsController::class], 'index');
+Route::post('/api/communications', [CommunicationsController::class], 'store');
+Route::get('/api/communications/{id}', [CommunicationsController::class], 'show');
+Route::delete('/api/communications/{id}', [CommunicationsController::class], 'destroy');
