@@ -1,2 +1,2 @@
 # projectColab
-Plataforma de p`royectos colaborativos
+Plataforma de proyectos colaborativos
