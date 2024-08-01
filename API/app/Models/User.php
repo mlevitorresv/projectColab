@@ -60,4 +60,14 @@ class User extends Authenticatable
     public function communications(): HasMany{
         return $this->hasMany(Communication::class, 'user_id');
     }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

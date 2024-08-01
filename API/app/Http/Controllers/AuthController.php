@@ -8,44 +8,55 @@ use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 
-
-
-
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+    
+    public function login()
+    {
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return $this->respondWithToken($token);
+    }
+
     public function register(Request $request)
     {
-        $validateData = $request->validate([
+        $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
         $user = User::create([
-            'name' => $validateData['name'],
-            'email' => $validateData['email'],
-            'password' => Hash::make($validateData['password']),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
 
-        $token = JWTAuth::fromUser($user);
+        $token = auth()->login($user);
 
-        return response()->json(
-            ['user' => $user, 'token' => $token],
-            201
-        );
+        return $this->respondWithToken($token);
     }
 
-    public function login(Request $request)
+    public function logout()
     {
-        $credentials = $request->only('email', 'password');
-
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
-        }
+        auth()->logout();
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function logout(){
-        Auth::guard('web')->logout();
-        return response()->josn(['message' => 'Succesfully logout']);
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ]);
     }
 }
