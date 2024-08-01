@@ -4,8 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,29 +43,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function projects(): BelongsToMany{
-        return $this->belongsToMany(Project::class, 'user_project', 'user_id', 'project_id')
-        ->withPivot('role')
-        ->withTimestamps();
-    }
-
-    public function tasks(): HasMany{
-        return $this->hasMany(Task::class, 'assigned');
-    }
-
-    public function communications(): HasMany{
-        return $this->hasMany(Communication::class, 'user_id');
-    }
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 }
