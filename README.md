@@ -28,9 +28,9 @@ Para poder ejecutar este programa, necesitas tener instalado lo siguiente:
 
 ## Construido con 🛠️
 
-* [React](https://es.react.dev/) - El framework web usado
-* [Laravel](https://laravel.com/) - Manejador de dependencias
-* [VScode](https://code.visualstudio.com/) - Usado para generar RSS
+* [React](https://es.react.dev/) - El framework web usado para el Front-End
+* [Laravel](https://laravel.com/) - El framework web usado para el Back-End
+* [VScode](https://code.visualstudio.com/) - Usado para generar código
 
 ## Autores ✒️
 
