@@ -6,7 +6,7 @@ plataforma de Gestión de proyectos colaborativos
 
 1. Ejecuta {git clone https://github.com/mlevitorresv/projectColab.git}
 2. Iniciar la API
-    - cd API/ \n
+    - cd API/
     - composer install
     - php artisan migrate
     - php artisan serve
